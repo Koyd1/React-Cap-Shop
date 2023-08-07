@@ -1,21 +1,33 @@
+import React, {useEffect, useState} from "react";
 import Card from './components/Card'
 import Header from "./components/Header";
 import RightCartBlock from "./components/RightCartBlock";
 
-
-const productArr = [
-    {title: 'Cap KYUTO Mid Mind', price: 7.999, imageUrl: '/img/product/Cap1.jpg'},
-    {title: 'White KYOTO Back Cap', price: 3.999, imageUrl: '/img/product/Cap2.jpg'},
-    {title: 'Country Travel STG', price: 15.999, imageUrl: '/img/product/Cap3.jpg'},
-    {title: 'Black Trip BN', price: 9.999, imageUrl: '/img/product/Cap4.jpg'},
-];
-
 function App() {
+    const [items, setItems] = useState([]);
+    const [cartItems, setCartItems] = useState([]);
+    const [cardOpened, setCardOpened] = useState(false);
+
+    useEffect(() => {
+        return () => {
+            fetch('https://64d09505ff953154bb791d1b.mockapi.io/items').then(res => {
+                return res.json();
+            }).then(json => setItems(json))
+        };
+    }, []);
+
+    const onAddToCart = (obj) => {
+        setCartItems(prev => [...prev, obj]);
+    }
+
     return (
         <div className='wrapper clear'>
 
-            <RightCartBlock/>
-            <Header/>
+            {cardOpened && <RightCartBlock
+                items={cartItems}
+                onClose={() => setCardOpened(false)}/>}
+
+            <Header onClickCart={() => setCardOpened(true)}/>
 
             <div className='content p-40 '>
                 <div className='d-flex align-center mb-40 justify-between'>
@@ -25,12 +37,15 @@ function App() {
                         <input placeholder='Поиск...' type='text'/>
                     </div>
                 </div>
-                <div className='d-flex'>
-                    {/* Рендер списка товара 01:23*/}
-                    {productArr.map((obj) => (
-                        <Card title={obj.title}
-                              price={obj.price}
-                              imageUrl={obj.imageUrl}/>
+                <div className='d-flex flex-wrap'>
+
+                    {items.map((item) => (
+                        <Card title={item.title}
+                              price={item.price}
+                              imageUrl={item.imageUrl}
+                              onFavorite={() => console.log('Favorite')}
+                              onPlus={(obj) => onAddToCart(obj)}
+                        />
                     ))}
 
                 </div>

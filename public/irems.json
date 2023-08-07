@@ -1,0 +1,102 @@
+[
+  {
+    "title": "Urban Blend Cap",
+    "price": 9.999,
+    "imageUrl": "/img/product/Cap1.jpg"
+  },
+  {
+    "title": "Cosmic Elegance Hat",
+    "price": 6.999,
+    "imageUrl": "/img/product/Cap2.jpg"
+  },
+  {
+    "title": "Vintage Vibe Snapback",
+    "price": 15.999,
+    "imageUrl": "/img/product/Cap3.jpg"
+  },
+  {
+    "title": "Serene Peaks Cap",
+    "price": 15.999,
+    "imageUrl": "/img/product/Cap4.jpg"
+  },
+  {
+    "title": "Neon Glow Trucker",
+    "price": 12.999,
+    "imageUrl": "/img/product/Cap5.jpg"
+  },
+  {
+    "title": "Retro Fusion Cap",
+    "price": 14.999,
+    "imageUrl": "/img/product/Cap6.jpg"
+  },
+  {
+    "title": "Twilight Adventure Hat",
+    "price": 18.999,
+    "imageUrl": "/img/product/Cap7.jpg"
+  },
+  {
+    "title": "Enchanted Forest Cap",
+    "price": 10.999,
+    "imageUrl": "/img/product/Cap8.jpg"
+  },
+  {
+    "title": "Midnight Mirage Snapback",
+    "price": 8.999,
+    "imageUrl": "/img/product/Cap9.jpg"
+  },
+  {
+    "title": "Desert Dreamer Hat",
+    "price": 19.999,
+    "imageUrl": "/img/product/Cap10.jpg"
+  },
+  {
+    "title": "Stealthy Urbanite Hat",
+    "price": 5.999,
+    "imageUrl": "/img/product/Cap11.jpg"
+  },
+  {
+    "title": "Starry Night Cap",
+    "price": 17.999,
+    "imageUrl": "/img/product/Cap12.jpg"
+  },
+  {
+    "title": "Cityscape Explorer Hat",
+    "price": 10.999,
+    "imageUrl": "/img/product/Cap13.jpg"
+  },
+  {
+    "title": "Oceanic Odyssey Cap",
+    "price": 7.999,
+    "imageUrl": "/img/product/Cap14.jpg"
+  },
+  {
+    "title": "Lush Meadow Snapback",
+    "price": 11.999,
+    "imageUrl": "/img/product/Cap15.jpg"
+  },
+  {
+    "title": "Wanderlust Wanderer Hat",
+    "price": 13.999,
+    "imageUrl": "/img/product/Cap16.jpg"
+  },
+  {
+    "title": "Urban Nomad Cap",
+    "price": 9.999,
+    "imageUrl": "/img/product/Cap17.jpg"
+  },
+  {
+    "title": "Nightfall Seeker Hat",
+    "price": 5.999,
+    "imageUrl": "/img/product/Cap18.jpg"
+  },
+  {
+    "title": "Alpine Ascent Cap",
+    "price": 6.999,
+    "imageUrl": "/img/product/Cap19.jpg"
+  },
+  {
+    "title": "Horizon Hiker Snapback",
+    "price": 8.999,
+    "imageUrl": "/img/product/Cap20.jpg"
+  }
+]

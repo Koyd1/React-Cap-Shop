@@ -1,5 +1,5 @@
-function Header(){
-    return(
+function Header(props) {
+    return (
         <header className='d-flex justify-between align-center p-40'>
             <div className='d-flex align-center'>
                 <img src="/img/smallIcon.png" alt="Ups"/>
@@ -11,7 +11,8 @@ function Header(){
 
             <div>
                 <ul className='d-flex'>
-                    <li className='mr-30'><img src='/img/Cart.svg' alt='Ups'/> <span> 1205 MDL</span> </li>
+                    <li onClick={props.onClickCart} className='mr-30'><img src='/img/Cart.svg' alt='Ups'/> <span> 1205 MDL</span>
+                    </li>
                     <li>
                         <img src='/img/User.svg' alt='Ups'/>
                     </li>
