@@ -1,23 +1,60 @@
 import React, {useEffect, useState} from "react";
-import Card from './components/Card'
-import Header from "./components/Header";
 import RightCartBlock from "./components/RightCartBlock";
+import axios from "axios";
+import Header from "./components/Header";
+import {Route, Routes} from "react-router-dom";
+import Home from "./pages/Home";
+import Favorites from "./pages/Favorites";
 
 function App() {
     const [items, setItems] = useState([]);
     const [cartItems, setCartItems] = useState([]);
+    // const [favorite, setFavorite] = useState([]);
+    const [searchValue, setSearchValue] = useState('');
     const [cardOpened, setCardOpened] = useState(false);
 
+
     useEffect(() => {
-        return () => {
-            fetch('https://64d09505ff953154bb791d1b.mockapi.io/items').then(res => {
-                return res.json();
-            }).then(json => setItems(json))
-        };
+        axios.get('https://64d09505ff953154bb791d1b.mockapi.io/items').then(res => {
+            setItems(res.data)
+        })
+        axios.get('https://64d09505ff953154bb791d1b.mockapi.io/cart').then(res => {
+            setCartItems(res.data)
+        })
+
+
     }, []);
 
+
     const onAddToCart = (obj) => {
+        axios.post('https://64d09505ff953154bb791d1b.mockapi.io/cart', obj).then(res => {
+        })
         setCartItems(prev => [...prev, obj]);
+    }
+    const onAddToFavorite = (obj) => {
+        axios.post('https://64d894885f9bf5b879ce5b94.mockapi.io/favorite', obj).then(res => {
+        })
+        setCartItems(prev => [...prev, obj]);
+        console.log('favorite')
+    }
+
+
+    const onRemoveItem = (id) => {
+        axios.delete(`https://64d09505ff953154bb791d1b.mockapi.io/cart/${id}`).then(response => {
+            console.log('Ok')
+        })
+            .catch(error => {
+                if (error.response && error.response.status === 404) {
+                    // Обработка ошибки 404
+                    console.log('Ресурс не найден');
+                }
+            });
+        setCartItems(prev => prev.filter(item => item.id !== id));
+    }
+
+
+    const onChangeSearchInput = (event) => {
+        setSearchValue(event.target.value)
     }
 
     return (
@@ -25,31 +62,29 @@ function App() {
 
             {cardOpened && <RightCartBlock
                 items={cartItems}
-                onClose={() => setCardOpened(false)}/>}
+                onClose={() => setCardOpened(false)} onRemove={onRemoveItem}/>}
+
 
             <Header onClickCart={() => setCardOpened(true)}/>
 
-            <div className='content p-40 '>
-                <div className='d-flex align-center mb-40 justify-between'>
-                    <h1>Все кепки</h1>
-                    <div className='search d-flex'>
-                        <img src='/img/search.svg' alt='Search'/>
-                        <input placeholder='Поиск...' type='text'/>
-                    </div>
-                </div>
-                <div className='d-flex flex-wrap'>
 
-                    {items.map((item) => (
-                        <Card title={item.title}
-                              price={item.price}
-                              imageUrl={item.imageUrl}
-                              onFavorite={() => console.log('Favorite')}
-                              onPlus={(obj) => onAddToCart(obj)}
-                        />
-                    ))}
+            <Routes>
+                <Route
+                    path="/" exact element={
+                    <Home
+                        items={items}
+                        searchValue={searchValue}
+                        setSearchValue={setSearchValue}
+                        onChangeSearchInput={onChangeSearchInput}
+                        onAddToFavorite={onAddToFavorite}
+                        onAddToCart={onAddToCart}
+                    />
+                }
+                ></Route>
+                <Route path="/favorites" exact element={<Favorites/>}></Route>
+            </Routes>
 
-                </div>
-            </div>
+
         </div>
     );
 }
