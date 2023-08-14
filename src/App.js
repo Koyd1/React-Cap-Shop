@@ -27,10 +27,12 @@ function App() {
 
 
     const onAddToCart = (obj) => {
-        axios.post('https://64d09505ff953154bb791d1b.mockapi.io/cart', obj).then(res => {
+        axios.post('https://64d09505ff953154bb791d1b.mockapi.io/cart', obj).then(response => {
+            setCartItems(prev => [...prev, response.data]);
         })
-        setCartItems(prev => [...prev, obj]);
     }
+
+
     const onAddToFavorite = (obj) => {
         axios.post('https://64d894885f9bf5b879ce5b94.mockapi.io/favorite', obj).then(res => {
         })
@@ -40,22 +42,17 @@ function App() {
 
 
     const onRemoveItem = (id) => {
-        axios.delete(`https://64d09505ff953154bb791d1b.mockapi.io/cart/${id}`).then(response => {
-            console.log('Ok')
+        console.log(id);
+        axios.delete(`https://64d09505ff953154bb791d1b.mockapi.io/cart/${id}`).then(() => {
+            setCartItems(prev => prev.filter(item => item.id !== id));
         })
-            .catch(error => {
-                if (error.response && error.response.status === 404) {
-                    // Обработка ошибки 404
-                    console.log('Ресурс не найден');
-                }
-            });
-        setCartItems(prev => prev.filter(item => item.id !== id));
     }
 
 
     const onChangeSearchInput = (event) => {
         setSearchValue(event.target.value)
     }
+
 
     return (
         <div className='wrapper clear'>
